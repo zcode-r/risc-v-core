@@ -1,0 +1,6 @@
+sim/
+*.vcd
+*.dot
+*.out
+*.log
+a.out
