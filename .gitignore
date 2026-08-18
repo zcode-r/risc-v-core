@@ -4,3 +4,4 @@ sim/
 *.out
 *.log
 a.out
+obj_dir/
