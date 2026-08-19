@@ -1,8 +1,8 @@
 `timescale 1ps/1ps
 
 module instruction_mem #(
-    parameter int MEM_DEPTH= 1024;
-    parameter string HEX_FILE="";
+    parameter int MEM_DEPTH= 1024,
+    parameter string HEX_FILE=""
 ) (
     
     input logic [31:0] addr,
@@ -17,6 +17,6 @@ initial begin
     end
 end
 
-assign inst=mem[(addr[31:2])%MEM_DEPTH];
+assign inst=mem[32'(addr[31:2])%MEM_DEPTH];
 
 endmodule

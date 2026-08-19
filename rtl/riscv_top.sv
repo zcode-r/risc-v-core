@@ -1,9 +1,9 @@
-'timescale 1ns/1ps
+`timescale 1ns/1ps
 
 import riscv_pkg::*;
 
 module riscv_top #(
-    parameter int MEM_DEPTH=1024;
+    parameter int MEM_DEPTH=1024,
     parameter string HEX_FILE=""
 ) (
     input logic clk,
@@ -27,7 +27,19 @@ logic [4:0] rs1,rs2,rd;
 logic [2:0] funct3;
 logic funct7_b5;
 
-//CONTROL SIGNAL
+// Control Signals
+logic [1:0] alu_op_type;
+logic is_i_type;
+logic alu_src;
+logic mem_to_reg;
+logic reg_write;
+logic mem_read;
+logic mem_write;
+logic branch;
+logic jump;
+alu_op_e alu_ctrl;
+
+//Datapath Buses
 logic [31:0] imm_out;
 logic [31:0] rdata1,rdata2;
 logic [31:0] alu_operand_b;
@@ -148,5 +160,4 @@ end
   // Select between Memory read data (LW), ALU result, or PC+4 (JAL)
     assign writeback_data=(jump)?pc_plus4:(mem_to_reg)?mem_rdata:alu_result;
 
-    endmodule
-    
+endmodule
